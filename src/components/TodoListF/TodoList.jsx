@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import Todo from '../TodoF/Todo';
 import App from '../../App';
-function TodoList({ list }) {
-    // const list = [
-    //     { id: 1, ATodoData: "fill water in bottle" },
-    //     { id: 2, ATodoData: "fill water in tank" }
-    // ]
-    // const [state, setState] = useState(list);
+function TodoList({ list, updateList }) {
     return (
         <>
             <div>
-                {list.length > 0 && list.map(param => <Todo key={param.id} todoData={param.ATodoData} />)}
+                {list.length > 0 && list.map(param => <Todo key={param.id}
+                    todoData={param.ATodoData}
+                    isFinished={param.finished}
+                    id={param.id}
+                    changedFinished={(isFinished) => {
+                        const updatedList = list.map(t => {
+                            if (t.id == param.id) {
+                                param.finished = isFinished;
+                            }
+                            return param;
+                        })
+                        setList(updateList)
+                    }} />)}
             </div>
         </>
     )
