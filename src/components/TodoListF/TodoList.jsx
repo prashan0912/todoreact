@@ -14,9 +14,10 @@ function TodoList({ list, updateList }) {
                             if (t.id == param.id) {
                                 param.finished = isFinished;
                             }
+                            console.log("finished",param)
                             return param;
                         })
-                        setList(updateList)
+                        updateList(updatedList)
                     }} />)}
             </div>
         </>
