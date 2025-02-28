@@ -1,25 +1,28 @@
-import { useState } from "react"
-import App from "../../App"
-function AddTodo({ updateList }) {
+import { useState } from 'react';
 
-    const [inputText, setInputText] = useState('')
+function AddTodo({ updateList }) {
+    const [inputText, setInputText] = useState('');
 
     return (
-        <>
-            <div>
-                <input
-                    type="text"
-                    placeholder="add your next todo"
-                    value={inputText}
-                    onChange={e => setInputText(e.target.value)} />
-                <button onClick={() => {
-                    updateList(inputText)
-                    setInputText('')
-                }}>Add</button>
-            </div>
-        </>
-    )
-
+        <div>
+            <input
+                type="text"
+                value={inputText}
+                placeholder="Add your next todo..."
+                onChange={(e) => setInputText(e.target.value)}
+            />
+            <button
+                onClick={() => {
+                    if (inputText.trim()) {
+                        updateList(inputText);
+                        setInputText('');
+                    }
+                }}
+            >
+                Add
+            </button>
+        </div>
+    );
 }
 
-export default AddTodo
+export default AddTodo;
